@@ -1,11 +1,15 @@
 package io.lazy.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.Arrays;
 import java.util.Random;
+
 @Entity
 @Table(name="ticket")
+@Getter
+@AllArgsConstructor
+@ToString
 public class TicketInfo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -43,34 +47,6 @@ public class TicketInfo {
         this.zbor = new Zbor();
     }
 
-    public TicketInfo(int ticketId, String seatNumber, ClassType classType, Status status, Client client, Zbor zbor) {
-        setTicketId(ticketId);
-        setSeatNumber(seatNumber);
-        setClassType(classType);
-        setStatus(status);
-        setClient(client);
-        setZbor(zbor);
-    }
-
-    public int getTicketId() {
-        return ticketId;
-    }
-
-    public String getSeatNumber() {
-        return seatNumber;
-    }
-
-    public ClassType getClassType() {
-        return classType;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public Client getClient() {return client;}
-
-    public Zbor getZbor() {return zbor;}
 
     public void setTicketId(int ticketId) {
         if (ticketId != 0) {
@@ -119,16 +95,5 @@ public class TicketInfo {
             throw new IllegalArgumentException("Invalid zbor type.");
         }
     }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "ticketId='" + ticketId + '\'' +
-                ", seatNumber='" + seatNumber + '\'' +
-                ", classType='" + classType + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
-
 
 }

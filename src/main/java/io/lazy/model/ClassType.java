@@ -1,9 +1,15 @@
 package io.lazy.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name="class_type")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ClassType {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -12,13 +18,4 @@ public class ClassType {
     @Column(name = "name")
     private String name;
 
-    public ClassType() {}
-    public ClassType(String name) { this.name = name;}
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getName() {
-        return name;
-    }
 }

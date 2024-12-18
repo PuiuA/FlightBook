@@ -1,9 +1,13 @@
 package io.lazy.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name="client")
+@Getter @Setter
+@AllArgsConstructor
+@ToString
 public class Client {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -21,17 +25,4 @@ public class Client {
     // Constructor implicit necesar pentru Hibernate
     public Client() {}
 
-    public Client(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-
-    public String getFirstName(){ return firstName; }
-    public String getLastName(){ return lastName; }
-    public int getAge(){ return age;}
-
-    public void setFirstName(String newFirstName){ this.firstName = newFirstName;}
-    public void setLastName(String newLastName){ this.lastName = newLastName; }
-    public void setAge(int newAge){if (newAge>0 && newAge<110){ this.age = newAge; } }
 }

@@ -14,11 +14,13 @@ public class TicketInfo {
     @Column(name="seat_number")
     private String seatNumber;
 
-    @Column(name = "class_type")
-    private String classType;
+    @ManyToOne
+    @JoinColumn(name="class_type_id", nullable = false)
+    ClassType classType;
 
-    @Column(name = "status")
-    private String status;
+    @ManyToOne
+    @JoinColumn(name="status_id", nullable = false)
+    Status status;
 
     @OneToOne
     @JoinColumn(name="client_id")
@@ -35,15 +37,19 @@ public class TicketInfo {
         Random random = new Random();
         this.ticketId = Integer.parseInt("TKT" + (1000 + random.nextInt(9000)));
         this.seatNumber = (1 + random.nextInt(50)) + "" + (char) ('A' + random.nextInt(6));
-        this.classType = classTypes[random.nextInt(classTypes.length)];
-        this.status = statusEx[random.nextInt(statusEx.length)];
+        this.classType = new ClassType();
+        this.status = new Status();
+        this.client = new Client();
+        this.zbor = new Zbor();
     }
 
-    public TicketInfo(int ticketId, String seatNumber, String classType, String status) {
+    public TicketInfo(int ticketId, String seatNumber, ClassType classType, Status status, Client client, Zbor zbor) {
         setTicketId(ticketId);
         setSeatNumber(seatNumber);
         setClassType(classType);
         setStatus(status);
+        setClient(client);
+        setZbor(zbor);
     }
 
     public int getTicketId() {
@@ -54,13 +60,17 @@ public class TicketInfo {
         return seatNumber;
     }
 
-    public String getClassType() {
+    public ClassType getClassType() {
         return classType;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
+
+    public Client getClient() {return client;}
+
+    public Zbor getZbor() {return zbor;}
 
     public void setTicketId(int ticketId) {
         if (ticketId != 0) {
@@ -78,19 +88,35 @@ public class TicketInfo {
         }
     }
 
-    public void setClassType(String classType) {
-        if (classType != null && Arrays.asList(classTypes).contains(classType)) {
+    public void setClassType(ClassType classType) {
+        if (classType != null) {
             this.classType = classType;
         } else {
             throw new IllegalArgumentException("Invalid class type. Must be one of: Economy, Business, First.");
         }
     }
 
-    public void setStatus(String status) {
-        if (status != null && Arrays.asList(statusEx).contains(status)) {
+    public void setStatus(Status status) {
+        if (status != null) {
             this.status = status;
         } else {
             throw new IllegalArgumentException("Invalid status. Must be one of: Confirmed, Cancelled, Checked-in.");
+        }
+    }
+
+    public void setClient(Client client) {
+        if (client != null) {
+            this.client = client;
+        } else {
+            throw new IllegalArgumentException("Invalid client type.");
+        }
+    }
+
+    public void setZbor(Zbor zbor) {
+        if (zbor != null) {
+            this.zbor = zbor;
+        }else {
+            throw new IllegalArgumentException("Invalid zbor type.");
         }
     }
 

@@ -1,4 +1,4 @@
-CREATE TABLE airport(
+CREATE TABLE IF NOT EXISTS airport(
     id SERIAL primary key NOT NULL,
     departure_airport_id integer NOT NULL ,
     arrival_airport_id integer NOT NULL,

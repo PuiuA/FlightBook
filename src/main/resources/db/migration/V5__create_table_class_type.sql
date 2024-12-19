@@ -1,4 +1,4 @@
-CREATE TABLE class_type(
+CREATE TABLE IF NOT EXISTS class_type(
     id SERIAL PRIMARY KEY NOT NULL,
     name varchar(100) NOT NULL
 );

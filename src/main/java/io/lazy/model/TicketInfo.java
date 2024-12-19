@@ -39,7 +39,6 @@ public class TicketInfo {
 
     public TicketInfo() {
         Random random = new Random();
-        this.id_ticket = Integer.parseInt("TKT" + (1000 + random.nextInt(9000)));
         this.seatNumber = (1 + random.nextInt(50)) + "" + (char) ('A' + random.nextInt(6));
         this.classType = new ClassType();
         this.status = new Status();

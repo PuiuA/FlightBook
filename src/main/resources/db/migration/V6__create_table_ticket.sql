@@ -1,4 +1,4 @@
-CREATE TABLE ticket(
+CREATE TABLE IF NOT EXISTS ticket(
     id SERIAL PRIMARY KEY,
     seat_number varchar(4) NOT NULL ,
     class_type integer,

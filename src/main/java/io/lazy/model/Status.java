@@ -1,9 +1,15 @@
 package io.lazy.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name="status")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Status {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -12,12 +18,4 @@ public class Status {
     @Column(name = "name")
     private String name;
 
-    public Status(String newName) {
-        this.name = newName;
-    }
-
-    public Status() {}
-
-    public String getStatus() { return name; }
-    public void setStatus(String newName) { this.name = newName; }
 }

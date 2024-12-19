@@ -13,17 +13,17 @@ import java.util.Random;
 public class TicketInfo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int ticketId;
+    private int id_ticket;
 
     @Column(name="seat_number")
     private String seatNumber;
 
     @ManyToOne
-    @JoinColumn(name="class_type_id", nullable = false)
+    @JoinColumn(name="class_type", nullable = false)
     ClassType classType;
 
     @ManyToOne
-    @JoinColumn(name="status_id", nullable = false)
+    @JoinColumn(name="status", nullable = false)
     Status status;
 
     @OneToOne
@@ -39,7 +39,7 @@ public class TicketInfo {
 
     public TicketInfo() {
         Random random = new Random();
-        this.ticketId = Integer.parseInt("TKT" + (1000 + random.nextInt(9000)));
+        this.id_ticket = Integer.parseInt("TKT" + (1000 + random.nextInt(9000)));
         this.seatNumber = (1 + random.nextInt(50)) + "" + (char) ('A' + random.nextInt(6));
         this.classType = new ClassType();
         this.status = new Status();
@@ -50,7 +50,7 @@ public class TicketInfo {
 
     public void setTicketId(int ticketId) {
         if (ticketId != 0) {
-            this.ticketId = ticketId;
+            this.id_ticket = ticketId;
         } else {
             throw new IllegalArgumentException("Invalid ticket ID. Must start with 'TKT' followed by 4 digits.");
         }

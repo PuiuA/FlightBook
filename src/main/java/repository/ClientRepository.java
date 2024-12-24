@@ -1,9 +1,9 @@
 package repository;
 
-import io.lazy.model.TicketInfo;
+import io.lazy.model.Client;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TicketRepository extends CrudRepository<TicketInfo, Integer> {
+public interface ClientRepository extends CrudRepository<Client, Integer> {
 }

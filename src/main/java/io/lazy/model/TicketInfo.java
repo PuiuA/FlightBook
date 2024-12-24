@@ -12,7 +12,7 @@ import java.util.Random;
 public class TicketInfo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id_ticket;
+    private Integer id;
 
     @Column(name="seat_number")
     private String seatNumber;
@@ -48,7 +48,7 @@ public class TicketInfo {
 
     public void setTicketId(int ticketId) {
         if (ticketId != 0) {
-            this.id_ticket = ticketId;
+            this.id = ticketId;
         } else {
             throw new IllegalArgumentException("Invalid ticket ID. Must start with 'TKT' followed by 4 digits.");
         }

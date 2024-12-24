@@ -7,13 +7,12 @@ import java.util.Random;
 
 @Entity
 @Table(name="ticket")
-@Getter
+@Data
 @AllArgsConstructor
-@ToString
 public class TicketInfo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id_ticket;
+    private Integer id_ticket;
 
     @Column(name="seat_number")
     private String seatNumber;

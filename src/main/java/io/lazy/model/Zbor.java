@@ -5,14 +5,13 @@ import lombok.*;
 
 @Entity
 @Table(name="zbor")
-@Getter@ Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Zbor {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public int id;
+    public Integer id;
 
     @ManyToOne
     @JoinColumn(name = "departure_airport_id", nullable = false)

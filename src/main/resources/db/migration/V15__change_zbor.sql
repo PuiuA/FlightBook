@@ -1,0 +1,3 @@
+ALTER TABLE zbor
+    ALTER COLUMN id TYPE BIGINT;
+

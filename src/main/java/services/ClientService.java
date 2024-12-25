@@ -8,7 +8,7 @@ import repository.ClientRepository;
 import java.util.List;
 
 @Service
-public class ClientServices {
+public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 

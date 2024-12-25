@@ -5,7 +5,7 @@ import services.ClientService;
 import io.lazy.model.Client;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:8480")
 @RestController
 @RequestMapping("/api/clients")
 public class ClientController {
@@ -29,5 +29,20 @@ public class ClientController {
     @DeleteMapping("/{id}")
     public void deleteClient(@PathVariable Integer id) {
         clientService.deleteClient(id);
+    }
+
+    @PostMapping
+    public Client createClient(
+            @RequestParam Integer id,
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam Integer age
+    ) {
+        Client client = new Client();
+        client.setId(id);
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setAge(age);
+        return clientService.saveClient(client);
     }
 }

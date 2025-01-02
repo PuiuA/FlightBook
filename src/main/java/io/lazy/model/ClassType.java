@@ -16,4 +16,10 @@ public class ClassType {
     @Column(name = "name")
     private String name;
 
+    public enum ClassTypeName {
+        ECONOMY,
+        BUSSINES,
+        FIRST
+    }
+
 }

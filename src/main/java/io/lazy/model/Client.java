@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="client")
+@Table(name="client", schema = "nume_schema//sa fie ca la aplicatia noastra")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,9 +20,9 @@ public class Client {
     @Column(name="age")
     private Integer age;
 
-    @ManyToOne
-    @JoinColumn(name = "status_id", nullable = false)
-    private Status status;
+//    @ManyToOne
+//    @JoinColumn(name = "status_id", nullable = false)
+//    private Status status;
 
     static String[] numeS = {"Ana","Maria","Ion","Vasile","Mirela","Nicolae","Maxim","Madalina","Ioana"};
     static String[] prenum = {"A","M","I","V","J","N","P","B","C"};

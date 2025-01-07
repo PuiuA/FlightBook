@@ -7,14 +7,14 @@ import io.lazy.services.ClientService;
 import io.lazy.model.Client;
 import java.util.List;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/clients")
 public class ClientController {
 
     private final ClientService clientService;
-    // dependency injection
+//    // dependency injection
 //    @Autowired
 //    public ClientController(ClientService clientService) {
 //        this.clientService = clientService;

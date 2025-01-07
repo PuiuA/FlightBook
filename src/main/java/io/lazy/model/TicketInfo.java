@@ -32,7 +32,9 @@ public class TicketInfo {
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
 
-    public List<Service> services;
+    @OneToMany()
+    private ArrayList<Service> services = new ArrayList<>();
+
 
     public TicketInfo() {
         Random random = new Random();

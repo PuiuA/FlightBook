@@ -2,97 +2,44 @@ package io.lazy.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Random;
+import java.util.*;
 
 @Entity
 @Table(name="ticket")
-@Getter
+@Data
 @AllArgsConstructor
-@ToString
 public class TicketInfo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id_ticket;
+    private Integer id;
 
     @Column(name="seat_number")
     private String seatNumber;
 
     @ManyToOne
     @JoinColumn(name="class_type", nullable = false)
-    ClassType classType;
-
-    @ManyToOne
-    @JoinColumn(name="status", nullable = false)
-    Status status;
+    private ClassType classType;
 
     @OneToOne
     @JoinColumn(name="client_id")
-    Client client;
+    private Client client;
 
     @ManyToOne
-    @JoinColumn(name="zbor_id")
-    Zbor zbor;
+    @JoinColumn(name = "departure_airport_id", nullable = false)
+    private Airport departureAirport;
 
-    static String[] classTypes = {"Economy", "Business", "First"};
-    static String[] statusEx = {"Confirmed", "Cancelled", "Checked-in"};
+    @ManyToOne
+    @JoinColumn(name = "arrival_airport_id", nullable = false)
+    private Airport arrivalAirport;
+
+    @OneToMany()
+    private ArrayList<Service> services = new ArrayList<>();
+
 
     public TicketInfo() {
         Random random = new Random();
         this.seatNumber = (1 + random.nextInt(50)) + "" + (char) ('A' + random.nextInt(6));
-        this.classType = new ClassType();
-        this.status = new Status();
         this.client = new Client();
-        this.zbor = new Zbor();
-    }
-
-
-    public void setTicketId(int ticketId) {
-        if (ticketId != 0) {
-            this.id_ticket = ticketId;
-        } else {
-            throw new IllegalArgumentException("Invalid ticket ID. Must start with 'TKT' followed by 4 digits.");
-        }
-    }
-
-    public void setSeatNumber(String seatNumber) {
-        if (seatNumber != null && seatNumber.matches("\\d{1,2}[A-F]")) {
-            this.seatNumber = seatNumber;
-        } else {
-            throw new IllegalArgumentException("Invalid seat number. Must be a number followed by a letter (A-F).");
-        }
-    }
-
-    public void setClassType(ClassType classType) {
-        if (classType != null) {
-            this.classType = classType;
-        } else {
-            throw new IllegalArgumentException("Invalid class type. Must be one of: Economy, Business, First.");
-        }
-    }
-
-    public void setStatus(Status status) {
-        if (status != null) {
-            this.status = status;
-        } else {
-            throw new IllegalArgumentException("Invalid status. Must be one of: Confirmed, Cancelled, Checked-in.");
-        }
-    }
-
-    public void setClient(Client client) {
-        if (client != null) {
-            this.client = client;
-        } else {
-            throw new IllegalArgumentException("Invalid client type.");
-        }
-    }
-
-    public void setZbor(Zbor zbor) {
-        if (zbor != null) {
-            this.zbor = zbor;
-        }else {
-            throw new IllegalArgumentException("Invalid zbor type.");
-        }
     }
 
 }

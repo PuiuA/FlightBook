@@ -1,0 +1,3 @@
+ALTER TABLE airport
+    ALTER COLUMN id TYPE BIGINT;
+

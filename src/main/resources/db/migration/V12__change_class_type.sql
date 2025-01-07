@@ -1,0 +1,3 @@
+ALTER TABLE class_type
+    ALTER COLUMN id TYPE BIGINT;
+

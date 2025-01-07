@@ -5,15 +5,13 @@ import lombok.*;
 
 @Entity
 @Table(name="airport")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Airport {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public int id;
+    public Integer id;
 
     @Column(name="name", nullable=false)
     public String name;

@@ -18,4 +18,7 @@ public class FlightStatus {
     @Enumerated(EnumType.STRING)
     private StatusName name;
 
+    public FlightStatus(StatusName name) {
+        this.name = name;
+    }
 }

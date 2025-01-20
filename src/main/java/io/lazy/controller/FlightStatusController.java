@@ -1,6 +1,6 @@
 package io.lazy.controller;
 
-import io.lazy.model.FlightStatus;
+import io.lazy.dto.FlightStatusDTO;
 import io.lazy.services.FlightStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class FlightStatusController {
     private final FlightStatusService flightStatusService;
 
     @GetMapping
-    public List<FlightStatus> getAllFlightStatus() {
-        return (List<FlightStatus>) flightStatusService.getAllFlightStatus();
+    public List<FlightStatusDTO> getAllFlightStatus() {
+        return flightStatusService.getAllFlightStatus();
     }
 }

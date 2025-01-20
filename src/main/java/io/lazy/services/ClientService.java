@@ -34,13 +34,6 @@ public class ClientService {
 
     public ClientDTO saveClient(ClientDTO clientDTO) {
         Client client = clientMapper.toEntity(clientDTO);
-
-        // Obține FlightStatus existent din baza de date
-        FlightStatus flightStatus = flightStatusRepository.findByName(clientDTO.getFlightStatusDTO().getName())
-                .orElseThrow(() -> new RuntimeException("Flight status not found"));
-
-        client.setFlightStatus(flightStatus);
-
         Client savedClient = clientRepository.save(client);
         return clientMapper.toDTO(savedClient);
     }

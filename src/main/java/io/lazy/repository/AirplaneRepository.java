@@ -1,8 +1,8 @@
 package io.lazy.repository;
 
 
-import io.lazy.model.AirPlane;
+import io.lazy.model.Airplane;
 import org.springframework.data.repository.CrudRepository;
 
-public interface AirplaneRepository extends CrudRepository<AirPlane,Long> {
+public interface AirplaneRepository extends CrudRepository<Airplane,Long> {
 }

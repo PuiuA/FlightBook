@@ -22,14 +22,10 @@ public class ClientController {
     public ClientDTO getClientById (@PathVariable Long id) { return clientService.getClientById(id);}
 
     @GetMapping
-    public List<ClientDTO> getAllClients() {
-        return clientService.getAllClients();
-    }
+    public List<ClientDTO> getAllClients() { return clientService.getAllClients(); }
 
     @PostMapping
-    public ClientDTO saveClient(@RequestBody ClientDTO client) {
-        return clientService.saveClient(client);
-    }
+    public ClientDTO saveClient(@RequestBody ClientDTO clientDTO) { return clientService.saveClient(clientDTO); }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteClient(@PathVariable Long id) {

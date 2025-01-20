@@ -1,5 +1,6 @@
 package io.lazy.model;
 
+import io.lazy.dto.FlightStatusDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,8 @@ public class Client {
 
     static String[] numeS = {"Ana","Maria","Ion","Vasile","Mirela","Nicolae","Maxim","Madalina","Ioana"};
     static String[] prenum = {"A","M","I","V","J","N","P","B","C"};
+
+
 //
 //    Client(ClientBuilder builder) {
 //        this.firstName = builder.firstName;

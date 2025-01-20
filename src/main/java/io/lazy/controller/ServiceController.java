@@ -1,6 +1,6 @@
 package io.lazy.controller;
 
-import io.lazy.model.Service;
+import io.lazy.dto.ServiceDTO;
 import io.lazy.services.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,5 +15,5 @@ public class ServiceController {
     private final ServiceService serviceService;
 
     @GetMapping
-    public List<Service> getAllServices() { return serviceService.getAllServices();}
+    public List<ServiceDTO> getAllServices() { return serviceService.getAllServices();}
 }

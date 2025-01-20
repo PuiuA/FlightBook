@@ -1,5 +1,6 @@
 package io.lazy.controller;
 
+import io.lazy.dto.AirportDTO;
 import io.lazy.model.Airport;
 import io.lazy.services.AirportService;
 import lombok.RequiredArgsConstructor;
@@ -15,5 +16,5 @@ public class AirportController {
      private final AirportService airportService;
 
      @GetMapping
-     public List<Airport> getAllAirports() { return airportService.getAllAirports();}
+     public List<AirportDTO> getAllAirports() { return airportService.getAllAirports();}
 }

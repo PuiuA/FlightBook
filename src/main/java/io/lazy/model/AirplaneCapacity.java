@@ -1,8 +1,6 @@
 package io.lazy.model;
 
-import lombok.Data;
-
-public enum PlaneCapacity {
+public enum AirplaneCapacity {
     MEDIUM(4,9,16),
     LARGE(5,9,27),
     EXTRA_LARGE(6,9,32);
@@ -12,7 +10,7 @@ public enum PlaneCapacity {
     private final int economyClassRows;
     private final int capacity;
 
-    PlaneCapacity(int firstClassRows, int bussinesClassRows, int economyClassRows) {
+    AirplaneCapacity(int firstClassRows, int bussinesClassRows, int economyClassRows) {
         this.firstClassRows = firstClassRows;
         this.bussinesClassRows = bussinesClassRows;
         this.economyClassRows = economyClassRows;

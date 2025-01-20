@@ -24,9 +24,6 @@ public class ClientMapper {
         client.setLastName(clientDTO.getLastName());
         client.setGender(clientDTO.getGender());
 
-        FlightStatus flightStatus = new FlightStatus(clientDTO.getFlightStatusDTO().getName());
-        client.setFlightStatus(flightStatus);
-
         return client;
     }
 }

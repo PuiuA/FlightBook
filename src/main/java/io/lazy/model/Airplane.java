@@ -4,21 +4,23 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.LinkedHashSet;
 
 @Entity
 @Table(name="plane", schema = "flight_book")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AirPlane {
+public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String model;
     @Enumerated(EnumType.STRING)
-    private PlaneCapacity planeCapacity;
+    private AirplaneCapacity planeCapacity;
+    @Column(name="total_seats")
+    private Integer totalSeats;
+
 //
 ////    @Transient
 //    public LinkedHashSet<String> seats;

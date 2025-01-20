@@ -1,11 +1,9 @@
 package io.lazy.controller;
 
-import io.lazy.model.AirPlane;
+import io.lazy.dto.AirplaneDTO;
 import io.lazy.services.AirplaneService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +14,13 @@ public class AirplaneController {
     private final AirplaneService airplaneService;
 
     @GetMapping
-    public List<AirPlane> getAllAirplane() {
-        return airplaneService.getAllAirplane();
+    public List<AirplaneDTO> getAllAirplanes() {
+        return airplaneService.getAllAirplanes();
     }
+
+    @GetMapping("/{id}")
+    public AirplaneDTO getAirplaneById (@PathVariable Long id) { return airplaneService.getAirplaneById(id);}
+
+    @PostMapping
+    public AirplaneDTO saveAirplane(@RequestBody AirplaneDTO airplaneDTO) { return airplaneService.saveAirplane(airplaneDTO);}
 }

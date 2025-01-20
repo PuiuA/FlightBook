@@ -10,15 +10,10 @@ import lombok.*;
 @AllArgsConstructor
 public class FlightStatus {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(name = "name")
     @Enumerated(EnumType.STRING)
     private StatusName name;
-
-    public FlightStatus(StatusName name) {
-        this.name = name;
-    }
 }

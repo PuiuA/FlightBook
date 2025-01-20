@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="airport")
+@Table(name="airport", schema = "flight_book")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Airport {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public Integer id;
+    public Long id;
 
     @Column(name="name", nullable=false)
     public String name;

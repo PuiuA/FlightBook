@@ -1,11 +1,9 @@
 package io.lazy.repository;
 
-import io.lazy.model.Client;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
+import io.lazy.model.Ticket;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Client, Long> {
+public interface TicketRepository extends CrudRepository<Ticket, Long> {
 }

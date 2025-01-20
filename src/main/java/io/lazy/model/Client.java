@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="client", schema = "nume_schema//sa fie ca la aplicatia noastra")
+@Table(name="client", schema = "flight_book")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name="first_name")
     private String firstName;
 
@@ -20,9 +20,11 @@ public class Client {
     @Column(name="age")
     private Integer age;
 
-//    @ManyToOne
-//    @JoinColumn(name = "status_id", nullable = false)
-//    private Status status;
+    private String gender;
+
+    @ManyToOne
+    @JoinColumn(name = "status", nullable = false)
+    private FlightStatus flightStatus;
 
     static String[] numeS = {"Ana","Maria","Ion","Vasile","Mirela","Nicolae","Maxim","Madalina","Ioana"};
     static String[] prenum = {"A","M","I","V","J","N","P","B","C"};

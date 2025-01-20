@@ -2,23 +2,21 @@ package io.lazy.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.*;
 import java.util.*;
 
 @Entity
-@Table(name="ticket")
+@Table(name="ticket", schema = "flight_book")
 @Data
 @AllArgsConstructor
-public class TicketInfo {
+public class Ticket {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name="seat_number")
     private String seatNumber;
-
-    @ManyToOne
-    @JoinColumn(name="class_type", nullable = false)
-    private ClassType classType;
 
     @OneToOne
     @JoinColumn(name="client_id")
@@ -32,13 +30,18 @@ public class TicketInfo {
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
 
-    @OneToMany()
+    @Transient
     private ArrayList<Service> services = new ArrayList<>();
 
+    @Column(name="departure_date_time")
+    private LocalDateTime departureDateTime;
+    @Column(name="arrival_date_time")
+    private LocalDateTime arrivalDateTime;
+    @Column(name = "flight_number")
+    private String flightNumber;
 
-    public TicketInfo() {
+    public Ticket() {
         Random random = new Random();
-        this.seatNumber = (1 + random.nextInt(50)) + "" + (char) ('A' + random.nextInt(6));
         this.client = new Client();
     }
 

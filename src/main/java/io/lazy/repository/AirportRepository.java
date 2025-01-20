@@ -1,11 +1,9 @@
 package io.lazy.repository;
 
-import io.lazy.model.Client;
+import io.lazy.model.Airport;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface ClientRepository extends CrudRepository<Client, Long> {
+public interface AirportRepository extends CrudRepository<Airport, Long> {
 }

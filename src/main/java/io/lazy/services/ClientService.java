@@ -14,17 +14,12 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
 
-//    @Autowired
-//    public ClientService(ClientRepository clientRepository){
-//        this.clientRepository = clientRepository;
-//    }
-
     public List<Client> getAllClients() {
         return (List<Client>) clientRepository.findAll();
     }
 
     public Client getClientById(Integer id) {
-        return clientRepository.findById(id).orElse(null);
+        return clientRepository.findById(Long.valueOf(id)).orElse(null);
     }
 
     public Client saveClient(Client client) {

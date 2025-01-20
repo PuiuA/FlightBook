@@ -1,3 +1,0 @@
-ALTER TABLE ticket
-    ALTER COLUMN id_ticket TYPE BIGINT;
-

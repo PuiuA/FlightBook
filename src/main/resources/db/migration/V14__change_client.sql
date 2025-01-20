@@ -1,3 +1,0 @@
-ALTER TABLE client
-    ALTER COLUMN id TYPE BIGINT;
-

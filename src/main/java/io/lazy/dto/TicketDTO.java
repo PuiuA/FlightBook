@@ -17,5 +17,4 @@ public class TicketDTO {
     private AirportDTO arrivalAirport;
     private LocalDateTime departureDateTime;
     private LocalDateTime arrivalDateTime;
-    private Float price;
 }

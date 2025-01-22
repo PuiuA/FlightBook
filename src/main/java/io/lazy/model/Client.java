@@ -1,6 +1,5 @@
 package io.lazy.model;
 
-import io.lazy.dto.FlightStatusDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

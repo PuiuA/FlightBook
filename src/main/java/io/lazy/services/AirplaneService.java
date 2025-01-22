@@ -3,6 +3,7 @@ package io.lazy.services;
 import io.lazy.dto.AirplaneDTO;
 import io.lazy.mapper.AirplaneMapper;
 import io.lazy.model.Airplane;
+import io.lazy.model.Client;
 import io.lazy.repository.AirplaneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class AirplaneService {
     }
 
     public AirplaneDTO getAirplaneById(Long id) {
-        Airplane airplane = airplaneRepository.findById(id).orElseThrow(() -> new RuntimeException("Airplane not found"));
+        Airplane airplane = airplaneRepository.findById(id);
         return airplaneMapper.toDTO(airplane);
     }
 
@@ -31,5 +32,18 @@ public class AirplaneService {
         Airplane airplane = airplaneMapper.toEntity(airplaneDTO);
         airplaneRepository.save(airplane);
         return airplaneMapper.toDTO(airplane);
+    }
+
+    public AirplaneDTO updateAirplane(AirplaneDTO airplaneDTO) {
+        Airplane airplane = airplaneMapper.toEntity(airplaneDTO);
+        Airplane savedAirplane = airplaneRepository.update(airplane);
+        return airplaneMapper.toDTO(savedAirplane);
+    }
+
+    public void deleteAirplaneById(Long id) {
+        airplaneRepository.deleteById(id);
+    }
+    public void deleteAirplane(AirplaneDTO airplaneDTO) {
+        airplaneRepository.delete(airplaneMapper.toEntity(airplaneDTO));
     }
 }

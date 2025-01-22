@@ -3,7 +3,6 @@ package io.lazy.services;
 import io.lazy.dto.ClientDTO;
 import io.lazy.mapper.ClientMapper;
 import io.lazy.model.Client;
-import io.lazy.model.FlightStatus;
 import io.lazy.repository.FlightStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
-    private final FlightStatusRepository flightStatusRepository;
 
     public List<ClientDTO> getAllClients() {
         return ((List<Client>) clientRepository.findAll())
@@ -28,7 +26,7 @@ public class ClientService {
     }
 
     public ClientDTO getClientById(Long id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
+        Client client = clientRepository.findById(id);
         return clientMapper.toDTO(client);
     }
 
@@ -38,6 +36,15 @@ public class ClientService {
         return clientMapper.toDTO(savedClient);
     }
 
-    public void deleteClient(Long id) { clientRepository.deleteById(id); }
+    public void deleteClientById(Long id) { clientRepository.deleteById(id); }
 
+    public void deleteClient(ClientDTO clientDTO) {
+        clientRepository.delete(clientMapper.toEntity(clientDTO));
+    }
+
+    public ClientDTO updateClient(Long id,ClientDTO clientDTO) {
+        Client client = clientRepository.findById(id);
+        Client updatedClient = clientMapper.toEntity(clientDTO);
+        return clientMapper.toDTO(clientRepository.save(updatedClient));
+    }
 }

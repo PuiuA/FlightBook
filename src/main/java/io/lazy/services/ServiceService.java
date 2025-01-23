@@ -20,4 +20,22 @@ public class ServiceService {
                 .map(serviceMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public ServiceDTO getServiceById(Long id) {
+        serviceRepository.findById(id);
+        return serviceMapper.toDTO(serviceRepository.findById(id));
+    }
+    public ServiceDTO createService(ServiceDTO serviceDTO) {
+        return serviceMapper.toDTO(serviceRepository.save(serviceMapper.toEntity(serviceDTO)));
+    }
+    public ServiceDTO updateService(Long id, ServiceDTO serviceDTO) {
+        serviceRepository.findById(id);
+        return serviceMapper.toDTO(serviceRepository.save(serviceMapper.toEntity(serviceDTO)));
+    }
+    public void deleteServiceById(Long id) {
+        serviceRepository.deleteById(id);
+    }
+    public void delete (ServiceDTO serviceDTO) {
+        serviceRepository.delete(serviceMapper.toEntity(serviceDTO));
+    }
 }

@@ -23,4 +23,19 @@ public class AirplaneController {
 
     @PostMapping
     public AirplaneDTO saveAirplane(@RequestBody AirplaneDTO airplaneDTO) { return airplaneService.saveAirplane(airplaneDTO);}
+
+    @PutMapping
+    public AirplaneDTO updateAirplane(@RequestBody AirplaneDTO airplaneDTO) {
+        return airplaneService.updateAirplane(airplaneDTO);
+    }
+
+    @DeleteMapping("/byDTO")
+    public void deleteAirplane(@RequestBody AirplaneDTO airplaneDTO) {
+        airplaneService.deleteAirplane(airplaneDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAirplaneById(@PathVariable Long id) {
+        airplaneService.deleteAirplaneById(id);
+    }
 }

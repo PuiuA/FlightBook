@@ -21,4 +21,30 @@ public class FlightStatusService {
                 .map(flightStatusMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public FlightStatusDTO getFlightStatusById(Long id) {
+        FlightStatus flightStatus = flightStatusRepository.findById(id);
+        return flightStatusMapper.toDTO(flightStatus);
+    }
+
+    public FlightStatusDTO saveFlightStatus(FlightStatusDTO flightStatusDTO) {
+        FlightStatus flightStatus = flightStatusMapper.toEntity(flightStatusDTO);
+        flightStatusRepository.save(flightStatus);
+        return flightStatusMapper.toDTO(flightStatus);
+    }
+
+    public FlightStatusDTO updateFlightStatus(Long id, FlightStatusDTO flightStatusDTO) {
+        FlightStatus flightStatus = flightStatusRepository.findById(id);
+        FlightStatus updatedFlightStatus = flightStatusMapper.toEntity(flightStatusDTO);
+        return flightStatusMapper.toDTO(flightStatusRepository.save(updatedFlightStatus));
+    }
+
+    public void deleteFlightStatusById(Long id) {
+        flightStatusRepository.deleteById(id);
+    }
+
+    public void deleteFlightStatus(FlightStatusDTO flightStatusDTO) {
+        FlightStatus flightStatus = flightStatusMapper.toEntity(flightStatusDTO);
+        flightStatusRepository.delete(flightStatus);
+    }
 }

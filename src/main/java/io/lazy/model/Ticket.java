@@ -1,5 +1,6 @@
 package io.lazy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,8 +31,14 @@ public class Ticket {
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
 
-    @Transient
-    private ArrayList<Service> services = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            schema = "flight_book",
+            name = "service_ticket",
+            joinColumns = @JoinColumn(name = "ticket_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id")
+    )
+    private List<Service> services = new ArrayList<>();
 
     @Column(name="departure_date_time")
     private LocalDateTime departureDateTime;
@@ -40,9 +47,13 @@ public class Ticket {
     @Column(name = "flight_number")
     private String flightNumber;
 
+    @JsonIgnore
+    private Float price;
+
     public Ticket() {
         Random random = new Random();
         this.client = new Client();
     }
+
 
 }

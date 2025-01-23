@@ -16,4 +16,8 @@ public class Service {
     private Long id;
     @Enumerated(EnumType.STRING)
     private ServiceType name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "price")
+    private Float price;
 }

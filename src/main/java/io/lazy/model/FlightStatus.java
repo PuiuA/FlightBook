@@ -16,4 +16,5 @@ public class FlightStatus {
     @Column(name = "name")
     @Enumerated(EnumType.STRING)
     private StatusName name;
+
 }

@@ -1,10 +1,12 @@
 package io.lazy.repository;
 
 import io.lazy.model.FlightStatus;
+import io.lazy.model.StatusName;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class FlightStatusRepository {

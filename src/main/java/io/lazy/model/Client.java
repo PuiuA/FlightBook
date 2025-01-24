@@ -19,18 +19,13 @@ public class Client {
     private String lastName;
     @Column(name="age")
     private Integer age;
-
+    @Column(name="gender")
     private String gender;
 
-    @ManyToOne
-    @JoinColumn(name = "status", nullable = false)
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "status")
     private FlightStatus flightStatus;
 
-    static String[] numeS = {"Ana","Maria","Ion","Vasile","Mirela","Nicolae","Maxim","Madalina","Ioana"};
-    static String[] prenum = {"A","M","I","V","J","N","P","B","C"};
-
-
-//
 //    Client(ClientBuilder builder) {
 //        this.firstName = builder.firstName;
 //        this.lastName = builder.lastName;

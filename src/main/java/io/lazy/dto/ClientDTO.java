@@ -13,5 +13,5 @@ public class ClientDTO {
     private String lastName;
     private Integer age;
     private String gender;
-    private FlightStatusDTO flightStatusDTO;
+    private FlightStatusDTO flightStatus;
 }

@@ -9,13 +9,13 @@ public class AirplaneMapper {
     public AirplaneDTO toDTO(Airplane airplane) {
         return new AirplaneDTO(
                 airplane.getModel(),
-                airplane.getPlaneCapacity()
+                airplane.getAirplaneCapacity()
         );
     }
     public Airplane toEntity(AirplaneDTO airplaneDTO) {
         Airplane airplane = new Airplane();
         airplane.setModel(airplaneDTO.getAirplaneModel());
-        airplane.setPlaneCapacity(airplaneDTO.getAirplaneCapacity());
+        airplane.setAirplaneCapacity(airplaneDTO.getAirplaneCapacity());
         return airplane;
     }
 }

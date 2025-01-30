@@ -19,8 +19,6 @@ public class TicketMapper {
 
 
     public TicketDTO toDTO(Ticket ticket) {
-//        ArrayList<String> serviceNames = (ArrayList<String>) ticket.getServices().stream()
-//                .map(service -> service.getName().name()).toList();
 
         TicketDTO ticketDTO = new TicketDTO();
         ticketDTO.setClient(clientMapper.toDTO(ticket.getClient()));

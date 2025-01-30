@@ -23,14 +23,6 @@ public class Ticket {
     @JoinColumn(name="client_id")
     private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "departure_airport_id", nullable = false)
-    private Airport departureAirport;
-
-    @ManyToOne
-    @JoinColumn(name = "arrival_airport_id", nullable = false)
-    private Airport arrivalAirport;
-
     @ManyToMany
     @JoinTable(
             schema = "flight_book",
@@ -40,12 +32,9 @@ public class Ticket {
     )
     private List<Service> services = new ArrayList<>();
 
-    @Column(name="departure_date_time")
-    private LocalDateTime departureDateTime;
-    @Column(name="arrival_date_time")
-    private LocalDateTime arrivalDateTime;
-    @Column(name = "flight_number")
-    private String flightNumber;
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 
     @JsonIgnore
     private Float price;

@@ -14,10 +14,6 @@ import java.util.List;
 public class TicketDTO {
     private String seatNumber;
     private ClientDTO client;
-    private AirportDTO departureAirport;
-    private AirportDTO arrivalAirport;
-    private LocalDateTime departureDateTime;
-    private LocalDateTime arrivalDateTime;
     private List<String> services;
     private Float price;
 }

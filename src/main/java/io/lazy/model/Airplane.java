@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.LinkedHashSet;
 
 @Entity
-@Table(name="plane", schema = "flight_book")
+@Table(name="airplane", schema = "flight_book")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,39 +15,39 @@ public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "model")
     private String model;
     @Enumerated(EnumType.STRING)
-    private AirplaneCapacity planeCapacity;
+    @Column(name = "airplane_capacity")
+    private AirplaneCapacity airplaneCapacity;
     @Column(name="total_seats")
     private Integer totalSeats;
-
 
     @Transient
     public LinkedHashSet<String> seats;
 
     public Airplane(String model, AirplaneCapacity capacity) {
         this.model = model;
-        this.planeCapacity = capacity;
-        seats = new LinkedHashSet<>(planeCapacity.getCapacity());
+        this.airplaneCapacity = capacity;
+        seats = new LinkedHashSet<>(airplaneCapacity.getCapacity());
         this.generateSeats();
         this.printSeats();
     }
 
     private void generateSeats() {
-        for (int i = 1; i < planeCapacity.getCapacity()+1; i++) {
-            if(i< planeCapacity.getFirstClassRows()){
+        for (int i = 1; i < airplaneCapacity.getCapacity()+1; i++) {
+            if(i< airplaneCapacity.getFirstClassRows()){
                 seats.add(i + Litera.A.name());
                 seats.add(i + Litera.B.name());
                 seats.add(i + Litera.E.name());
                 seats.add(i + Litera.F.name());
             }
-            if (i < planeCapacity.getBussinesClassRows()+ planeCapacity.getFirstClassRows()){
+            if (i < airplaneCapacity.getBussinesClassRows()+ airplaneCapacity.getFirstClassRows()){
                 for (Litera litera : Litera.values()) {
                     seats.add(i + litera.name());
                 }
             }
-            if( i < planeCapacity.getCapacity()){
+            if( i < airplaneCapacity.getCapacity()){
                 for (Litera litera : Litera.values()) {
                     seats.add(i + litera.name());
                 }
@@ -61,4 +60,6 @@ public class Airplane {
             System.out.print(l+" ");
         }
     }
+
+
 }

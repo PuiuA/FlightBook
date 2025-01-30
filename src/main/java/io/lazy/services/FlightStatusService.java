@@ -1,7 +1,6 @@
 package io.lazy.services;
 
 import io.lazy.dto.FlightStatusDTO;
-import io.lazy.mapper.FlightStatusMapper;
 import io.lazy.model.FlightStatus;
 import io.lazy.repository.FlightStatusRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,30 +12,29 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FlightStatusService {
     private final FlightStatusRepository flightStatusRepository;
-    private final FlightStatusMapper flightStatusMapper;
 
     public List<FlightStatusDTO> getAllFlightStatus() {
         return ((List<FlightStatus>) flightStatusRepository.findAll())
                 .stream()
-                .map(flightStatusMapper::toDTO)
+                .map(FlightStatusDTO::toDTO)
                 .collect(Collectors.toList());
     }
 
     public FlightStatusDTO getFlightStatusById(Long id) {
         FlightStatus flightStatus = flightStatusRepository.findById(id);
-        return flightStatusMapper.toDTO(flightStatus);
+        return FlightStatusDTO.toDTO(flightStatus);
     }
 
     public FlightStatusDTO saveFlightStatus(FlightStatusDTO flightStatusDTO) {
-        FlightStatus flightStatus = flightStatusMapper.toEntity(flightStatusDTO);
+        FlightStatus flightStatus = FlightStatusDTO.toEntity(flightStatusDTO);
         flightStatusRepository.save(flightStatus);
-        return flightStatusMapper.toDTO(flightStatus);
+        return FlightStatusDTO.toDTO(flightStatus);
     }
 
     public FlightStatusDTO updateFlightStatus(Long id, FlightStatusDTO flightStatusDTO) {
         FlightStatus flightStatus = flightStatusRepository.findById(id);
-        FlightStatus updatedFlightStatus = flightStatusMapper.toEntity(flightStatusDTO);
-        return flightStatusMapper.toDTO(flightStatusRepository.save(updatedFlightStatus));
+        FlightStatus updatedFlightStatus = FlightStatusDTO.toEntity(flightStatusDTO);
+        return FlightStatusDTO.toDTO(flightStatusRepository.save(updatedFlightStatus));
     }
 
     public void deleteFlightStatusById(Long id) {
@@ -44,7 +42,7 @@ public class FlightStatusService {
     }
 
     public void deleteFlightStatus(FlightStatusDTO flightStatusDTO) {
-        FlightStatus flightStatus = flightStatusMapper.toEntity(flightStatusDTO);
+        FlightStatus flightStatus = FlightStatusDTO.toEntity(flightStatusDTO);
         flightStatusRepository.delete(flightStatus);
     }
 }

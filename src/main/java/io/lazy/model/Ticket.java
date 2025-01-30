@@ -10,6 +10,7 @@ import java.util.*;
 @Entity
 @Table(name="ticket", schema = "flight_book")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Ticket {
     @Id
@@ -38,11 +39,5 @@ public class Ticket {
 
     @JsonIgnore
     private Float price;
-
-    public Ticket() {
-        Random random = new Random();
-        this.client = new Client();
-    }
-
 
 }

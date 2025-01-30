@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.LinkedHashSet;
 
 @Entity
-@Table(name="plane", schema = "flight_book")
+@Table(name="airplane", schema = "flight_book")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,9 +15,10 @@ public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "model")
     private String model;
     @Enumerated(EnumType.STRING)
+    @Column(name = "airplane_capacity")
     private AirplaneCapacity airplaneCapacity;
     @Column(name="total_seats")
     private Integer totalSeats;
@@ -59,4 +60,6 @@ public class Airplane {
             System.out.print(l+" ");
         }
     }
+
+
 }

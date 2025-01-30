@@ -1,9 +1,7 @@
 package io.lazy.services;
 
 import io.lazy.dto.AirplaneDTO;
-import io.lazy.mapper.AirplaneMapper;
 import io.lazy.model.Airplane;
-import io.lazy.model.Client;
 import io.lazy.repository.AirplaneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,36 +12,35 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AirplaneService {
     private final AirplaneRepository airplaneRepository;
-    private final AirplaneMapper airplaneMapper;
 
     public List<AirplaneDTO> getAllAirplanes() {
         return ((List<Airplane>) airplaneRepository.findAll())
                 .stream()
-                .map(airplaneMapper::toDTO)
+                .map(AirplaneDTO::toDTO)
                 .collect(Collectors.toList());
     }
 
     public AirplaneDTO getAirplaneById(Long id) {
         Airplane airplane = airplaneRepository.findById(id);
-        return airplaneMapper.toDTO(airplane);
+        return AirplaneDTO.toDTO(airplane);
     }
 
     public AirplaneDTO saveAirplane(AirplaneDTO airplaneDTO) {
-        Airplane airplane = airplaneMapper.toEntity(airplaneDTO);
+        Airplane airplane = AirplaneDTO.toEntity(airplaneDTO);
         airplaneRepository.save(airplane);
-        return airplaneMapper.toDTO(airplane);
+        return AirplaneDTO.toDTO(airplane);
     }
 
     public AirplaneDTO updateAirplane(AirplaneDTO airplaneDTO) {
-        Airplane airplane = airplaneMapper.toEntity(airplaneDTO);
+        Airplane airplane = AirplaneDTO.toEntity(airplaneDTO);
         Airplane savedAirplane = airplaneRepository.update(airplane);
-        return airplaneMapper.toDTO(savedAirplane);
+        return AirplaneDTO.toDTO(savedAirplane);
     }
 
     public void deleteAirplaneById(Long id) {
         airplaneRepository.deleteById(id);
     }
     public void deleteAirplane(AirplaneDTO airplaneDTO) {
-        airplaneRepository.delete(airplaneMapper.toEntity(airplaneDTO));
+        airplaneRepository.delete(AirplaneDTO.toEntity(airplaneDTO));
     }
 }
